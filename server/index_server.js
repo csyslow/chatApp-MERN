@@ -2,16 +2,21 @@ import express, { json } from 'express'
 import mongoose from 'mongoose';
 import dotenv from 'dotenv';
 import authRoutes from './routes/authRoutes.js';
+import messageRoutes from './routes/messageRoutes.js';
+import userRoutes from './routes/userRoutes.js'
+import cookieParser from 'cookie-parser';
 
 const app = express();
 dotenv.config(); //makes .env file usable
 
 const PORT_NO = process.env.PORT || 8000;
 
-
 app.use(json()); //parse JSON request payload from req.body
-app.use('/api/auth', authRoutes);
+app.use(cookieParser()); //parse incoming cookies in req.cookies
 
+app.use('/api/auth', authRoutes);
+app.use('/api/message', messageRoutes);
+app.use('/api/user', userRoutes);
 
 mongoose.connect(process.env.MONGODB_URL)
     .then(() => {
@@ -21,8 +26,8 @@ mongoose.connect(process.env.MONGODB_URL)
     })
     .catch((err) => {
         console.log(err);
-    })
+    });
 
 mongoose.connection.once("open", () => {
     console.log('Connected to MongoDB');
-})
+});

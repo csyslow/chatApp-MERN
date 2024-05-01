@@ -1,12 +1,12 @@
 import mongoose, { Schema, model } from "mongoose";
 
 const messageSchema = new Schema({
-    senderId:{
+    senderId: {
         type: mongoose.Schema.Types.ObjectId, //a reference of user's _id
-        ref: "user",
+        ref: "UserModel",
         required: true
     },
-    receiverId:{
+    receiverId: {
         type: mongoose.Schema.Types.ObjectId,
         required: true
     },
@@ -14,7 +14,8 @@ const messageSchema = new Schema({
         type: String,
         required: true
     }
-}, {timestamps: true});
+},
+    { timestamps: true });
 
 const MessageModel = model("messages", messageSchema);
 

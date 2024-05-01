@@ -25,9 +25,10 @@ const userSchema = new Schema({
         type: String,
         default: ""
     },
-}, { timestamps: true });
+},
+    { timestamps: true });
 
 //create model
-const UserModel = model('user', userSchema);
+const UserModel = model('users', userSchema);
 
 export default UserModel;

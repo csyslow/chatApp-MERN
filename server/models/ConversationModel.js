@@ -4,7 +4,7 @@ const conversationSchema = new Schema({
     participants: [
         {
             type: mongoose.Schema.Types.ObjectId,
-            ref: "user",
+            ref: "users", //should be actual collection name (when registering the model) not exported module name
             required: true
         }
     ],
@@ -17,7 +17,8 @@ const conversationSchema = new Schema({
         }
     ]
 
-}, { timestamps: true });
+},
+    { timestamps: true });
 
 const ConversationModel = model('conversation', conversationSchema);
 
