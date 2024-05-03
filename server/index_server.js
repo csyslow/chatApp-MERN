@@ -5,6 +5,7 @@ import authRoutes from './routes/authRoutes.js';
 import messageRoutes from './routes/messageRoutes.js';
 import userRoutes from './routes/userRoutes.js'
 import cookieParser from 'cookie-parser';
+import cors from 'cors'
 
 const app = express();
 dotenv.config(); //makes .env file usable
@@ -13,6 +14,9 @@ const PORT_NO = process.env.PORT || 8000;
 
 app.use(json()); //parse JSON request payload from req.body
 app.use(cookieParser()); //parse incoming cookies in req.cookies
+app.use(cors({
+    origin: 'http://localhost:5173'
+}));
 
 app.use('/api/auth', authRoutes);
 app.use('/api/message', messageRoutes);

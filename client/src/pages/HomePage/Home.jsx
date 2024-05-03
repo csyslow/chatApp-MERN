@@ -1,4 +1,3 @@
-import React from 'react';
 import UserSidebar from '../../components/UserSidebar';
 import MessageContainer from '../../components/MessageContainer';
 

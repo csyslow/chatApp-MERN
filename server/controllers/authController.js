@@ -7,10 +7,10 @@ const logInHandler = async (req, res) => {
         const {username, password} = req.body;
         const user = await UserModel.findOne({username});
         // check username
-        if (!user) return res.status(400).json("The user does not exist, please sign up first");
+        if (!user) return res.status(400).json({error: "Wrong username or password, please sign up first"});
         //check password
         const validPwd = await bcrypt.compare(password, user.password);
-        if (!validPwd) return res.status(400).json("Incorrect Password");
+        if (!validPwd) return res.status(400).json({error: "Incorrect Password"});
         generatedJWTAndSetCookie(user._id, res);
         res.status(200).json(user);
     } catch (error) {
