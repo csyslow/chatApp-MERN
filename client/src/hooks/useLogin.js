@@ -19,7 +19,8 @@ const useLogin = () => {
             data: {
                 username,
                 password
-            }
+            },
+            withCredentials:true
         })
             .then((res) => {
                 const loginUser = res.data;

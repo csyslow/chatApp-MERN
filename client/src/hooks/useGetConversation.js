@@ -12,9 +12,11 @@ const useGetConversation = () => {
             setLoading(true);
             axios({
                 method: 'GET',
-                url: 'http://localhost:5001/api/user'
+                url: 'http://localhost:5001/api/user',
+                withCredentials: true
             })
                 .then((res) => {
+                    console.log(res.data)
                     const users = res.data;
                     setConversations(users);
                 })

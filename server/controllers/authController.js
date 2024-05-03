@@ -11,7 +11,7 @@ const logInHandler = async (req, res) => {
         //check password
         const validPwd = await bcrypt.compare(password, user.password);
         if (!validPwd) return res.status(400).json({error: "Incorrect Password"});
-        generatedJWTAndSetCookie(user._id, res);
+        await generatedJWTAndSetCookie(user._id, res);
         res.status(200).json(user);
     } catch (error) {
         console.log('Error in LogInHandler');

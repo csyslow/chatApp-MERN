@@ -22,7 +22,8 @@ const useSignUp = () => {
                 gender,
                 password,
                 confirmedPassword,
-            }
+            },
+            withCredentials: true
         })
             .then((res) => {
                 const loginUser = res.data;

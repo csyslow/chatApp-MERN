@@ -4,7 +4,7 @@ import UserModel from '../models/UserModel.js';
 const protectRoute = async (req, res, next) => {
     try {
         //get set token in cookies
-        const token = req.cookies.jwt; //cookie-parser needed
+        const token = req.cookies.user_jwt; //cookie-parser needed
         if (!token) return res.status(401).json({ error: "Unauthorized user (jwt not exists)" });
         //verify token in req
         const decodedJwt = await jwt.verify(token, process.env.JWT_KEY); //return decoded payload obj

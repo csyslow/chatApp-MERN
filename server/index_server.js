@@ -15,7 +15,8 @@ const PORT_NO = process.env.PORT || 8000;
 app.use(json()); //parse JSON request payload from req.body
 app.use(cookieParser()); //parse incoming cookies in req.cookies
 app.use(cors({
-    origin: 'http://localhost:5173'
+    origin: 'http://localhost:5173',
+    credentials: true
 }));
 
 app.use('/api/auth', authRoutes);
