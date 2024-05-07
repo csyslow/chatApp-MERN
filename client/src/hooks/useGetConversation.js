@@ -16,7 +16,6 @@ const useGetConversation = () => {
                 withCredentials: true
             })
                 .then((res) => {
-                    console.log(res.data)
                     const users = res.data;
                     setConversations(users);
                 })

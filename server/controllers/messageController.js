@@ -52,8 +52,9 @@ const getMessageHandler = async (req, res) => {
         const conversation = await ConversationModel.findOne({
             participants:
                 { $all: [targetUserId, senderId] }
-        }).populate('messages'); //mapping each msgId in arr to actual message doc obj
-        if (!conversation) return res.status(200).json({messages:[]}); //return empty message arr if no conversation yet
+        })
+            .populate('messages'); //mapping each msgId in arr to actual message doc obj
+        if (!conversation) return res.status(200).json([]); //return empty message arr if no conversation yet
 
         res.status(200).json(conversation.messages);
     } catch (error) {

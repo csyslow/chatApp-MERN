@@ -1,12 +1,15 @@
 import React from 'react';
+import useConversation from '../../store/useConversation';
 
-const Conversation = ({friend, isLast}) => {
-    const {username, profilePicUrl} = friend;
-    // const {selectedConversation, setSelectedConversation} = useConversation();
-    // const isSelected = selectedConversation?._id === friend._id
+const Conversation = ({friend: conversation, isLast}) => {
+    const {username, profilePicUrl} = conversation;
+    const {selectedConversation, setSelectedConversation} = useConversation();
+    const isSelected = selectedConversation?._id === conversation._id;
     return (
         <>
-            <div className={`flex gap-2 items-cente duration-300 rounded p-2 py-1 cursor-pointer hover:bg-gray-400 rounded-2xl`}
+            <div className={`flex gap-2 items-cente duration-100 rounded p-2 py-1 cursor-pointer
+            ${isSelected ? 'bg-sky-500' : ''} hover:bg-sky-700 rounded-2xl`}
+            onClick={() => setSelectedConversation(conversation)}
             >
                 <div className='avatar online'>
                     <div className='w-12 rounded-e-full'>

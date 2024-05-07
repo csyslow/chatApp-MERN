@@ -24,9 +24,10 @@ const useLogin = () => {
         })
             .then((res) => {
                 const loginUser = res.data;
-                localStorage.setItem('loginUser', loginUser);
+                localStorage.setItem('loginUser', JSON.stringify(loginUser)); //localstorage储存对象先要转换为JSON
                 localStorage.setItem('loginUsername', username);
-                setAuthUser(loginUser);
+                console.log('login user:', loginUser);
+                setAuthUser((loginUser));
             })
             .catch((err) => {
                 toast.error(err.response.data.error); //get error info from backend controller
