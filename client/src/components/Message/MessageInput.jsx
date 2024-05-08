@@ -18,7 +18,7 @@ const MessageInput = () => {
         sendMessagesReq
         if (!message) return;
         await sendMessagesReq(message);
-        setMessage('')
+        setMessage('');
     }
     return (
         <form action=""

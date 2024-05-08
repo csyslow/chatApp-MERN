@@ -34,13 +34,13 @@ const Login = () => {
                         <label htmlFor="username" className='label p-2'>
                             <span className='text-base'>Username</span>
                         </label>
-                        <input onChange={usernameChangeHandler} value={username} type="text" placeholder='Enter your username' className='w-full input input-bordered h-10 opacity-50 text-gray-900' />
+                        <input onChange={usernameChangeHandler} value={username} type="text" placeholder='Enter your username' className='w-full input input-bordered h-10 opacity-50 text-black' />
                     </div>
                     <div className='text-gray-300'>
                         <label htmlFor="password" className='label p-2'>
                             <span className='text-base'>Password</span>
                         </label>
-                        <input onChange={passwordChangeHandler} value={password} type="password" placeholder='Enter your password' className='w-full input input-bordered h-10 opacity-50 text-gray-900' />
+                        <input onChange={passwordChangeHandler} value={password} type="password" placeholder='Enter your password' className='w-full input input-bordered h-10 opacity-50 text-black' />
                     </div>
                     <div className='pt-4'>
                         <span className='mr-2'>{"Don't"} have an account yet?</span>
