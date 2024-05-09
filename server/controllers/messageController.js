@@ -1,6 +1,8 @@
 import { json } from "express";
 import MessageModel from "../models/MessageModel.js";
 import ConversationModel from "../models/ConversationModel.js";
+import { getReceiverSocketId } from "../socket/socket.js";
+import { io } from "../socket/socket.js";
 
 const sendMessageHandler = async (req, res) => {
     try {
@@ -25,19 +27,21 @@ const sendMessageHandler = async (req, res) => {
             content
         });
         if (newMsg) {
-            conversation.messages.push(newMsg._id);
-
-            // Socket.IO function to be added here
-
-            //await newMsg.save();
-            //await conversation.save();
-            //improve codes to run in parallel:
-            Promise.all([newMsg.save(), conversation.save()])
-                .then(() => {
-                    res.status(201).json(newMsg);
-                });
+            conversation.messages.push(newMsg._id); 
         };
+        //await newMsg.save();
+        //await conversation.save();
+        //improve codes to run in parallel:
+        await Promise.all([newMsg.save(), conversation.save()]);
 
+        //Socket IO
+        const receiverSocketId = getReceiverSocketId(receiverId);
+        if (receiverSocketId) {
+            //only emit to a specific user
+            io.to(receiverSocketId).emit('newMessage', newMsg);
+
+        };
+        res.status(201).json(newMsg);
     } catch (error) {
         console.log('Error in sendMessageHandler')
         res.status(500).json({ error: error.message })

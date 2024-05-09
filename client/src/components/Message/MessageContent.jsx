@@ -3,6 +3,7 @@ import Message from './Message';
 import useConversation from '../../store/useConversation';
 import useGetMessages from '../../hooks/useGetMessages';
 import { IoChatbubbleEllipsesSharp } from "react-icons/io5";
+import useListenMessages from '../../hooks/useListenMessages';
 
 const MessageContent = () => {
     const { selectedConversation } = useConversation();
@@ -10,7 +11,8 @@ const MessageContent = () => {
 
     const { messages } = useGetMessages();
     const lastMsgRef = useRef();
-
+    //listening the socket messages
+    useListenMessages();
     //scroll down to last message automatically
     useEffect(() => {
         setTimeout(() => {

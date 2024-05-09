@@ -29,7 +29,7 @@ const useSignUp = () => {
                 const loginUser = res.data;
                 console.log(loginUser);
                 // set user data to local storage
-                localStorage.setItem('loginUser', loginUser);
+                localStorage.setItem('loginUser', JSON.stringify(loginUser));
                 localStorage.setItem('loginUsername', username);
                 // update authUser state
                 setAuthUser(loginUser);
